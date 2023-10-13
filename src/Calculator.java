@@ -77,7 +77,7 @@ public class Calculator implements ActionListener {
         JPanel text = new JPanel();
         JPanel buttons = new JPanel();
         // makes a 4x4 grid
-        buttons.setLayout(new GridLayout(4,4));
+        buttons.setLayout(new GridLayout(4, 4));
         JPanel equals = new JPanel();
 
         // add components to panels
@@ -114,7 +114,6 @@ public class Calculator implements ActionListener {
         calculator.setSize(300, 250);
         calculator.setVisible(true);
     }
-
 
     public void actionPerformed(ActionEvent e) {
         // actions for number buttons
@@ -226,6 +225,10 @@ public class Calculator implements ActionListener {
     public static void main(String[] args) {
         // create a new calculator object and call the createAndShowGUI method
         Calculator c = new Calculator();
-        c.createAndShowGUI();
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                c.createAndShowGUI();
+            }
+        });
     }
 }

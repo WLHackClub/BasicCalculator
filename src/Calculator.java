@@ -140,7 +140,20 @@ public class Calculator implements ActionListener {
             } else if (e.getSource() == b9) {
                 l.setText(l.getText() + "9");
             }
-            // action for subtraction button
+            // actions for operator buttons
+            // adding
+            else if (e.getSource() == ba) {
+                l.setText(l.getText() + "+");
+            }
+            // dividing
+            else if (e.getSource() == bd) {
+                l.setText(l.getText() + "/");
+            }
+            // multiplying
+            else if (e.getSource() == bm) {
+                l.setText(l.getText() + "*");
+            }
+            // subtracting
             else if (e.getSource() == bs) {
                 l.setText(l.getText() + "-");
             }
@@ -205,20 +218,6 @@ public class Calculator implements ActionListener {
                 }
             }
 
-            // actions for other operator buttons
-
-            // adding
-            else if (e.getSource() == ba) {
-                l.setText(l.getText() + "+");
-            }
-            // subtracting
-            else if (e.getSource() == bd) {
-                l.setText(l.getText() + "/");
-            }
-            // multiplying
-            if (e.getSource() == bm) {
-                l.setText(l.getText() + "*");
-            }
         } catch (Exception ex) {
             l.setText("Error");
         }

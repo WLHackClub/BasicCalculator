@@ -6,7 +6,7 @@ import javax.swing.*;
 public class Calculator implements ActionListener {
 
     JFrame calculator;
-    JTextField l;
+    JTextField text;
     JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, ba, bs, bd, bm, be, bc, beq;
 
     public void createAndShowGUI() {
@@ -16,7 +16,7 @@ public class Calculator implements ActionListener {
         calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // create a text field and add action listeners
-        l = new JTextField(16);
+        text = new JTextField(16);
 
         // create number buttons
         b0 = new JButton("0");
@@ -74,41 +74,41 @@ public class Calculator implements ActionListener {
         be.addActionListener(this);
 
         // create a panels
-        JPanel o = new JPanel();
-        JPanel p = new JPanel();
+        JPanel text = new JPanel();
+        JPanel buttons = new JPanel();
         // makes a 4x4 grid
-        p.setLayout(new GridLayout(4,4));
-        JPanel e = new JPanel();
+        buttons.setLayout(new GridLayout(4,4));
+        JPanel equals = new JPanel();
 
         // add components to panels
-        o.add(l);
-        p.add(ba);
-        p.add(b1);
-        p.add(b2);
-        p.add(b3);
-        p.add(bs);
-        p.add(b4);
-        p.add(b5);
-        p.add(b6);
-        p.add(bm);
-        p.add(b7);
-        p.add(b8);
-        p.add(b9);
-        p.add(bd);
-        p.add(be);
-        p.add(b0);
-        p.add(bc);
-        e.add(beq);
+        text.add(this.text);
+        buttons.add(ba);
+        buttons.add(b1);
+        buttons.add(b2);
+        buttons.add(b3);
+        buttons.add(bs);
+        buttons.add(b4);
+        buttons.add(b5);
+        buttons.add(b6);
+        buttons.add(bm);
+        buttons.add(b7);
+        buttons.add(b8);
+        buttons.add(b9);
+        buttons.add(bd);
+        buttons.add(be);
+        buttons.add(b0);
+        buttons.add(bc);
+        equals.add(beq);
 
         // set background of panels
-        p.setBackground(Color.blue);
-        o.setBackground(Color.blue);
-        e.setBackground(Color.blue);
+        buttons.setBackground(Color.blue);
+        text.setBackground(Color.blue);
+        equals.setBackground(Color.blue);
 
         // add panels to frame
-        calculator.add(o);
-        calculator.add(p);
-        calculator.add(e);
+        calculator.add(text);
+        calculator.add(buttons);
+        calculator.add(equals);
 
         // set visibility of frame
         calculator.setSize(300, 250);
@@ -120,57 +120,57 @@ public class Calculator implements ActionListener {
         // actions for number buttons
         try {
             if (e.getSource() == b0) {
-                l.setText(l.getText() + "0");
+                text.setText(text.getText() + "0");
             } else if (e.getSource() == b1) {
-                l.setText(l.getText() + "1");
+                text.setText(text.getText() + "1");
             } else if (e.getSource() == b2) {
-                l.setText(l.getText() + "2");
+                text.setText(text.getText() + "2");
             } else if (e.getSource() == b3) {
-                l.setText(l.getText() + "3");
+                text.setText(text.getText() + "3");
             } else if (e.getSource() == b4) {
-                l.setText(l.getText() + "4");
+                text.setText(text.getText() + "4");
             } else if (e.getSource() == b5) {
-                l.setText(l.getText() + "5");
+                text.setText(text.getText() + "5");
             } else if (e.getSource() == b6) {
-                l.setText(l.getText() + "6");
+                text.setText(text.getText() + "6");
             } else if (e.getSource() == b7) {
-                l.setText(l.getText() + "7");
+                text.setText(text.getText() + "7");
             } else if (e.getSource() == b8) {
-                l.setText(l.getText() + "8");
+                text.setText(text.getText() + "8");
             } else if (e.getSource() == b9) {
-                l.setText(l.getText() + "9");
+                text.setText(text.getText() + "9");
             }
             // actions for operator buttons
             // adding
             else if (e.getSource() == ba) {
-                l.setText(l.getText() + "+");
+                text.setText(text.getText() + "+");
             }
             // dividing
             else if (e.getSource() == bd) {
-                l.setText(l.getText() + "/");
+                text.setText(text.getText() + "/");
             }
             // multiplying
             else if (e.getSource() == bm) {
-                l.setText(l.getText() + "*");
+                text.setText(text.getText() + "*");
             }
             // subtracting
             else if (e.getSource() == bs) {
-                l.setText(l.getText() + "-");
+                text.setText(text.getText() + "-");
             }
 
             // action for . button
             else if (e.getSource() == be) {
-                l.setText(l.getText() + ".");
+                text.setText(text.getText() + ".");
             }
 
             // action for clear button
             else if (e.getSource() == bc) {
-                l.setText("");
+                text.setText("");
             }
 
             // action for equals button
             else if (e.getSource() == beq) {
-                String text = l.getText();
+                String text = this.text.getText();
                 // if adding
                 if (text.contains("+")) {
                     String[] numbers = text.split("\\+");
@@ -178,7 +178,7 @@ public class Calculator implements ActionListener {
                     for (String number : numbers) {
                         sum += Double.parseDouble(number);
                     }
-                    l.setText(Double.toString(sum));
+                    this.text.setText(Double.toString(sum));
                 }
                 // if multiplying
                 else if (text.contains("*")) {
@@ -187,7 +187,7 @@ public class Calculator implements ActionListener {
                     for (String number : numbers) {
                         prod *= Double.parseDouble(number);
                     }
-                    l.setText(Double.toString(prod));
+                    this.text.setText(Double.toString(prod));
                 }
                 // if dividing
                 else if (text.contains("/")) {
@@ -196,7 +196,7 @@ public class Calculator implements ActionListener {
                     for (int i = 1; i < numbers.length; i++) {
                         quo /= Double.parseDouble(numbers[i]);
                     }
-                    l.setText(Double.toString(quo));
+                    this.text.setText(Double.toString(quo));
                 }
                 // if subtracting
                 else if (text.contains("-")) {
@@ -206,20 +206,20 @@ public class Calculator implements ActionListener {
                         for (int i = 1; i < numbers.length; i++) {
                             diff -= Double.parseDouble(numbers[i]);
                         }
-                        l.setText(Double.toString(diff));
+                        this.text.setText(Double.toString(diff));
                     } else {
                         String[] numbers = text.split("-");
                         double diff = Double.parseDouble(numbers[0]);
                         for (int i = 1; i < numbers.length; i++) {
                             diff -= Double.parseDouble(numbers[i]);
                         }
-                        l.setText(Double.toString(diff));
+                        this.text.setText(Double.toString(diff));
                     }
                 }
             }
 
         } catch (Exception ex) {
-            l.setText("Error");
+            text.setText("Error");
         }
     }
 

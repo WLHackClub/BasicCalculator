@@ -118,140 +118,109 @@ public class Calculator implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         // actions for number buttons
-        if (e.getSource() == b0) {
-            l.setText(l.getText() + "0");
-        }
-        else if (e.getSource() == b1) {
-            l.setText(l.getText() + "1");
-        }
-        else if (e.getSource() == b2) {
-            l.setText(l.getText() + "2");
-        }
-        else if (e.getSource() == b3) {
-            l.setText(l.getText() + "3");
-        }
-        else if (e.getSource() == b4) {
-            l.setText(l.getText() + "4");
-        }
-        else if (e.getSource() == b5) {
-            l.setText(l.getText() + "5");
-        }
-        else if (e.getSource() == b6) {
-            l.setText(l.getText() + "6");
-        }
-        else if (e.getSource() == b7) {
-            l.setText(l.getText() + "7");
-        }
-        else if (e.getSource() == b8) {
-            l.setText(l.getText() + "8");
-        }
-        else if (e.getSource() == b9) {
-            l.setText(l.getText() + "9");
-        }
-        // action for subtraction button
-        else if (e.getSource() == bs) {
-            if (l.getText().length() == 0 || (l.getText().length() == 1 && l.getText().charAt(0) != '-') ||
-                    (l.getText().length() > 1 && (l.getText().lastIndexOf('-') == 0
-                            || l.getText().lastIndexOf('-') == -1))) {
-                if ((l.getText().lastIndexOf('+') == l.getText().length() - 1
-                        || (l.getText().lastIndexOf('+') == - 1))
-                        || (l.getText().lastIndexOf('*') == l.getText().length() - 1
-                        || (l.getText().lastIndexOf('+') == - 1))
-                        || (l.getText().lastIndexOf('/') == l.getText().length() - 1)
-                        || (l.getText().lastIndexOf('+') == - 1)){
-                    l.setText(l.getText() + "-");
-                }
+        try {
+            if (e.getSource() == b0) {
+                l.setText(l.getText() + "0");
+            } else if (e.getSource() == b1) {
+                l.setText(l.getText() + "1");
+            } else if (e.getSource() == b2) {
+                l.setText(l.getText() + "2");
+            } else if (e.getSource() == b3) {
+                l.setText(l.getText() + "3");
+            } else if (e.getSource() == b4) {
+                l.setText(l.getText() + "4");
+            } else if (e.getSource() == b5) {
+                l.setText(l.getText() + "5");
+            } else if (e.getSource() == b6) {
+                l.setText(l.getText() + "6");
+            } else if (e.getSource() == b7) {
+                l.setText(l.getText() + "7");
+            } else if (e.getSource() == b8) {
+                l.setText(l.getText() + "8");
+            } else if (e.getSource() == b9) {
+                l.setText(l.getText() + "9");
             }
-        }
+            // action for subtraction button
+            else if (e.getSource() == bs) {
+                l.setText(l.getText() + "-");
+            }
 
-        // action for . button
-        else if (e.getSource() == be) {
-            if (!(l.getText().contains(".")) || (l.getText().contains("+")
-                    && l.getText().indexOf('.') < l.getText().indexOf('+'))
-                    || (l.getText().length() > 1 && l.getText().substring(1).contains("-") &&
-                    l.getText().indexOf('.') < l.getText().indexOf('-'))
-                    || (l.getText().contains("*") && l.getText().indexOf('.') < l.getText().indexOf('*'))
-                    || (l.getText().contains("/")) && l.getText().indexOf('.') < l.getText().indexOf('/')) {
+            // action for . button
+            else if (e.getSource() == be) {
                 l.setText(l.getText() + ".");
             }
-        }
 
-        // action for clear button
-        else if (e.getSource() == bc) {
-            l.setText("");
-        }
+            // action for clear button
+            else if (e.getSource() == bc) {
+                l.setText("");
+            }
 
-        // action for equals button
-        else if (e.getSource() == beq) {
-            String text = l.getText();
-            // if adding
-            if (text.contains("+")) {
-                String[] numbers = text.split("\\+");
-                double sum = 0;
-                for (String number : numbers) {
-                    sum += Double.parseDouble(number);
-                }
-                l.setText(Double.toString(sum));
-            }
-            // if multiplying
-            else if (text.contains("*")) {
-                String[] numbers = text.split("\\*");
-                double prod = 1;
-                for (String number : numbers) {
-                    prod *= Double.parseDouble(number);
-                }
-                l.setText(Double.toString(prod));
-            }
-            // if dividing
-            else if (text.contains("/")) {
-                String[] numbers = text.split("/");
-                double quo = Double.parseDouble(numbers[0]);
-                for (int i = 1; i < numbers.length; i++) {
-                    quo /= Double.parseDouble(numbers[i]);
-                }
-                l.setText(Double.toString(quo));
-            }
-            // if subtracting
-            else if (text.contains("-")) {
-                if (text.charAt(0) == '-') {
-                    String[] numbers = text.substring(1).split("-");
-                    double diff = Double.parseDouble("-" + numbers[0]);
-                    for (int i = 1; i < numbers.length; i++) {
-                        diff -= Double.parseDouble(numbers[i]);
+            // action for equals button
+            else if (e.getSource() == beq) {
+                String text = l.getText();
+                // if adding
+                if (text.contains("+")) {
+                    String[] numbers = text.split("\\+");
+                    double sum = 0;
+                    for (String number : numbers) {
+                        sum += Double.parseDouble(number);
                     }
-                    l.setText(Double.toString(diff));
-                } else {
-                    String[] numbers = text.split("-");
-                    double diff = Double.parseDouble(numbers[0]);
-                    for (int i = 1; i < numbers.length; i++) {
-                        diff -= Double.parseDouble(numbers[i]);
+                    l.setText(Double.toString(sum));
+                }
+                // if multiplying
+                else if (text.contains("*")) {
+                    String[] numbers = text.split("\\*");
+                    double prod = 1;
+                    for (String number : numbers) {
+                        prod *= Double.parseDouble(number);
                     }
-                    l.setText(Double.toString(diff));
+                    l.setText(Double.toString(prod));
+                }
+                // if dividing
+                else if (text.contains("/")) {
+                    String[] numbers = text.split("/");
+                    double quo = Double.parseDouble(numbers[0]);
+                    for (int i = 1; i < numbers.length; i++) {
+                        quo /= Double.parseDouble(numbers[i]);
+                    }
+                    l.setText(Double.toString(quo));
+                }
+                // if subtracting
+                else if (text.contains("-")) {
+                    if (text.charAt(0) == '-') {
+                        String[] numbers = text.substring(1).split("-");
+                        double diff = Double.parseDouble("-" + numbers[0]);
+                        for (int i = 1; i < numbers.length; i++) {
+                            diff -= Double.parseDouble(numbers[i]);
+                        }
+                        l.setText(Double.toString(diff));
+                    } else {
+                        String[] numbers = text.split("-");
+                        double diff = Double.parseDouble(numbers[0]);
+                        for (int i = 1; i < numbers.length; i++) {
+                            diff -= Double.parseDouble(numbers[i]);
+                        }
+                        l.setText(Double.toString(diff));
+                    }
                 }
             }
-        }
 
-        // actions for other operator buttons
-        else if (!(l.getText().contains("+") || (l.getText().length() > 1 && l.getText().substring(1).contains("-"))
-                || l.getText().contains("*") || l.getText().contains("/"))) {
+            // actions for other operator buttons
+
             // adding
-            if (e.getSource() == ba) {
-                if (l.getText().length() > 1 || (l.getText().length() == 1 && l.getText().charAt(0) != '-')) {
-                    l.setText(l.getText() + "+");
-                }
+            else if (e.getSource() == ba) {
+                l.setText(l.getText() + "+");
             }
             // subtracting
-            if (e.getSource() == bd) {
-                if (l.getText().length() > 1 || (l.getText().length() == 1 && l.getText().charAt(0) != '-' )) {
-                    l.setText(l.getText() + "/");
-                }
+            else if (e.getSource() == bd) {
+                l.setText(l.getText() + "/");
             }
             // multiplying
             if (e.getSource() == bm) {
-                if (l.getText().length() > 1 || (l.getText().length() == 1 && l.getText().charAt(0) != '-' )) {
-                    l.setText(l.getText() + "*");
-                }
+                l.setText(l.getText() + "*");
             }
+        } catch (Exception ex) {
+            l.setText("Error");
         }
     }
 

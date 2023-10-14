@@ -15,10 +15,11 @@ public class Calculator implements ActionListener {
         calculator.setLayout(new FlowLayout());
         calculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // create a text field and add action listeners
+        // create a text field
         text = new JTextField(16);
+        text.setEditable(false);
 
-        // create number buttons
+        // create number buttons and add action listeners
         b0 = new JButton("0");
         b0.addActionListener(this);
 
@@ -73,15 +74,15 @@ public class Calculator implements ActionListener {
         be = new JButton(".");
         be.addActionListener(this);
 
-        // create a panels
-        JPanel text = new JPanel();
+        // create panels
+        JPanel textPanel = new JPanel();
         JPanel buttons = new JPanel();
         // makes a 4x4 grid
         buttons.setLayout(new GridLayout(4, 4));
         JPanel equals = new JPanel();
 
         // add components to panels
-        text.add(this.text);
+        textPanel.add(text);
         buttons.add(ba);
         buttons.add(b1);
         buttons.add(b2);
@@ -102,11 +103,11 @@ public class Calculator implements ActionListener {
 
         // set background of panels
         buttons.setBackground(Color.blue);
-        text.setBackground(Color.blue);
+        textPanel.setBackground(Color.blue);
         equals.setBackground(Color.blue);
 
         // add panels to frame
-        calculator.add(text);
+        calculator.add(textPanel);
         calculator.add(buttons);
         calculator.add(equals);
 
@@ -224,6 +225,7 @@ public class Calculator implements ActionListener {
 
     public static void main(String[] args) {
         // create a new calculator object and call the createAndShowGUI method
+
         Calculator c = new Calculator();
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
